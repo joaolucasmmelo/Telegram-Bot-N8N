@@ -1,0 +1,2375 @@
+{
+  "name": "B2bit Bot",
+  "nodes": [
+    {
+      "parameters": {
+        "chatId": "={{ $json.message.chat.id }}",
+        "text": "=Menu Ações:\n\n/start -> Exibe o menu de opções e instruções.\n\n/help -> Exibe as Instruções para utilização dos comandos.\n\n/1 -> Cria um documento PDF com o cabeçalho “B2bit” e um texto previamente digitado pelo usuário.\n \n/2 -> Cria um documento PDF com cabeçalho “B2bit”, texto e imagem previamente enviados pelo usuário.\n\n/3 -> Transcreve um áudio enviado pelo usuário e retorna seu texto.\n\n/4 -> Exibe as notícias da capa do G1.\n\n/5 -> Responde automaticamente a partir de IA.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "1f3c3a45-c377-4358-b952-51fecb72ba42",
+      "name": "Send menu",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -120,
+        -320
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "l2OPAjs2xTqi5kSz",
+          "name": "B2bit n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "a93871ed-39ac-47d7-a1fc-3a56309c547c",
+      "name": "first message",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -420,
+        1000
+      ],
+      "webhookId": "ad1a4de6-46db-47a9-85a6-c7bcd5c73108",
+      "notesInFlow": false,
+      "credentials": {
+        "telegramApi": {
+          "id": "l2OPAjs2xTqi5kSz",
+          "name": "B2bit n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "a7171959-f6ec-4521-83a5-790ca399859f",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/start",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "707eb669-9d0f-447a-b1f2-aab2866dfd93",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/help",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "4c913833-7117-4cc2-8799-2336dd80b5d0",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/1",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "76a8191b-8935-4d6f-9b19-26d263d06a71",
+                    "leftValue": "={{ $json.message.caption }}",
+                    "rightValue": "/2",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "c7ca94b8-cceb-44b9-bd11-00691cb42ac0",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/2",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "35cc90bd-4ea8-4fbc-b27d-f32be66744a1",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/3",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "0c2acded-8f53-4caf-a3a9-906ceb3c15a4",
+                    "leftValue": "={{ $json.message.voice }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "object",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "f3882533-16f2-47a9-9c83-5a9e447c86d7",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/4",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "81563967-df3e-4c45-b62c-f58526a2bf9f",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/5",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "id": "486be6b9-30d4-4b19-98bc-24e23ccf6409",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -220,
+        900
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('first message').item.json.message.from.id }}",
+        "text": "=Envie um áudio para executar a opeação 3",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "f0e127cf-2df2-4dfd-a5b3-edcce25fafe3",
+      "name": "audio instruction",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        160,
+        920
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "l2OPAjs2xTqi5kSz",
+          "name": "B2bit n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## 3 - Transcreve áudio em texto",
+        "height": 80,
+        "width": 380
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        120,
+        800
+      ],
+      "id": "ad0ba7b5-50bb-4d3b-a6c3-0da10b06eec3",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message.chat.id }}",
+        "text": "=Menu Instruções:\n\n- INSTRUÇÕES /1 -> Digite “/1” seguido de espaço e do texto que deseja inserir.\nEX: \"/1 TEXTO\".\n\n- INSTRUÇÕES /2 -> Mande uma imagem acoplada com o comando “/2”, seguido de espaço e então o texto que deseja inserir.\nEX: \"IMAGEM\", “/2 TEXTO”\n\n- INSTRUÇÕES /3 -> Basta mandar o áudio para o bot.\n\n- INSTRUÇÕES /4 -> \"/4\"\n\n- INSTRUÇÕES /5 -> Basta digitar \"/5\" seguido de espaço e então digitar o que deseja para o bot.\nEX: \"/5 TEXTO\".",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "e21fa397-560b-49f9-87f3-d74198b24481",
+      "name": "menu instructions",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        40,
+        -480
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "l2OPAjs2xTqi5kSz",
+          "name": "B2bit n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-1.5-flash-001",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        440,
+        2040
+      ],
+      "id": "c716bfa8-ed12-4220-9b55-15bebe8a36dc",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "mbKDc3wKDh0S13Jf",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst updatedItems = items.map((item) => {\n  item.json.message.text = item.json.message.text.substring(3);\n  return item;\n});\nreturn updatedItems;\n"
+      },
+      "id": "5314b32f-a88b-4d38-ad4f-2c9a80cd9b83",
+      "name": "treats telegram input2",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        100,
+        1900
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst updatedItems = items.map((item) => {\n  item.json.text = item.json.text.replace(/\\*/g, \"\");\n  return item;\n});\nreturn updatedItems;\n"
+      },
+      "id": "e8d22cf1-5dc4-4860-bdb2-d54b3e21b5c8",
+      "name": "treats Gemini output",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        600,
+        1900
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('first message').item.json.message.chat.id }}",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        800,
+        1900
+      ],
+      "id": "f3ba78cd-ad7e-4df6-843d-0856af7f4834",
+      "name": "send Gemini output",
+      "credentials": {
+        "telegramApi": {
+          "id": "l2OPAjs2xTqi5kSz",
+          "name": "B2bit n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.result.chat.id }}",
+        "text": "=Menu Ações:\n\n/start -> Exibe o menu de opções e instruções.\n\n/help -> Exibe as Instruções para utilização dos comandos.\n\n/1 -> Cria um documento PDF com o cabeçalho “B2bit” e um texto previamente digitado pelo usuário.\n \n/2 -> Cria um documento PDF com cabeçalho “B2bit”, texto e imagem previamente enviados pelo usuário.\n\n/3 -> Transcreve um áudio enviado pelo usuário e retorna seu texto.\n\n/4 -> Exibe as notícias da capa do G1.\n\n/5 -> Responde automaticamente a partir de IA.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "04248647-4b72-4fab-be21-ababc03d1b9f",
+      "name": "Send menu5",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        980,
+        1900
+      ],
+      "executeOnce": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "l2OPAjs2xTqi5kSz",
+          "name": "B2bit n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://g1.globo.com",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        320,
+        1480
+      ],
+      "id": "918b0f60-df61-4eb5-8ab2-d16f58f8b282",
+      "name": "Get data from G1"
+    },
+    {
+      "parameters": {
+        "content": "## 4 - Envia as manchetes e os links das noticias do G1",
+        "height": 80,
+        "width": 360
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        120,
+        1360
+      ],
+      "id": "6c93fd30-67f0-4583-86b5-ab6f7dd3a8ef",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('first message').item.json.message.from.id }}",
+        "text": "=Aqui estão as notícias mais recentes do G1 que pude encontrar:",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        120,
+        1480
+      ],
+      "id": "5324d4e8-f1ab-4fdb-89a9-7405e158be29",
+      "name": "previous message2",
+      "credentials": {
+        "telegramApi": {
+          "id": "l2OPAjs2xTqi5kSz",
+          "name": "B2bit n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "Noticias",
+              "cssSelector": ".feed-post-link > p",
+              "returnValue": "html",
+              "returnArray": true
+            },
+            {
+              "key": "Links",
+              "cssSelector": "h2",
+              "skipSelectors": "p",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        500,
+        1480
+      ],
+      "id": "f2c71e06-be84-49ce-8ee5-2837c2c05659",
+      "name": "extract HTML"
+    },
+    {
+      "parameters": {
+        "jsCode": "let noticias = [];\n\nfor (const item of $input.all()) {\n  for (let index = 0; index < item.json.Noticias.length; index++) {\n    if (item.json.Noticias[index] && item.json.Links[index]) {\n      let noticia = {\n        title: item.json.Noticias[index],\n        link: item.json.Links[index],\n      };\n      noticias.push(noticia);\n    }\n  }\n}\n\nreturn noticias;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        680,
+        1480
+      ],
+      "id": "be885da1-f364-4e14-82be-abb9fb12ecc6",
+      "name": "Trates the HTML data"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('first message').item.json.message.from.id }}",
+        "text": "={{ $json.title }}:\n{{ $json.link }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        880,
+        1480
+      ],
+      "id": "fa48ea30-a7f1-477b-8c85-9f7869136c25",
+      "name": "send news and links",
+      "credentials": {
+        "telegramApi": {
+          "id": "l2OPAjs2xTqi5kSz",
+          "name": "B2bit n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.result.chat.id }}",
+        "text": "=Menu Ações:\n\n/start -> Exibe o menu de opções e instruções.\n\n/help -> Exibe as Instruções para utilização dos comandos.\n\n/1 -> Cria um documento PDF com o cabeçalho “B2bit” e um texto previamente digitado pelo usuário.\n \n/2 -> Cria um documento PDF com cabeçalho “B2bit”, texto e imagem previamente enviados pelo usuário.\n\n/3 -> Transcreve um áudio enviado pelo usuário e retorna seu texto.\n\n/4 -> Exibe as notícias da capa do G1.\n\n/5 -> Responde automaticamente a partir de IA.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "f1d8f212-8e67-478e-9a5b-102becf4c678",
+      "name": "Send menu3",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1060,
+        1480
+      ],
+      "executeOnce": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "l2OPAjs2xTqi5kSz",
+          "name": "B2bit n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## 5 - responde a qualquer mensagem com IA do Gemini",
+        "height": 80,
+        "width": 380
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        80,
+        1760
+      ],
+      "id": "485be933-bb7b-4a91-bad7-86932921844c",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message.chat.id }}",
+        "text": "=Envie uma foto junto do texto da seguite forma: *foto*\"/2 TEXTO A SER ENVIADO\"",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        240,
+        560
+      ],
+      "id": "0cc6b09f-c785-495c-9c2f-dd8e48ae196a",
+      "name": "not image warning",
+      "credentials": {
+        "telegramApi": {
+          "id": "l2OPAjs2xTqi5kSz",
+          "name": "B2bit n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "1df50c67-de61-4e8b-8340-7baf9cec41e7",
+              "leftValue": "={{ $json.message.photo }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "799a193d-0460-43e4-89fa-a5f1daf55263",
+              "leftValue": "={{ $json.message.caption }}",
+              "rightValue": "/2",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        60,
+        460
+      ],
+      "id": "c9c350cc-4238-4e47-9d58-b99512a19350",
+      "name": "if marcadores preenchidos"
+    },
+    {
+      "parameters": {
+        "content": "## 2 - Cria Documento com marcadores para imagem e texto",
+        "height": 80,
+        "width": 420
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        60,
+        260
+      ],
+      "id": "b8d68cf1-5b0d-43e2-8950-405ac89fcfbc",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $('first message').item.json.message.photo[2].file_id }}"
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        940,
+        360
+      ],
+      "id": "a1191986-6f98-4b7e-9d89-d10a06486664",
+      "name": "Telegram",
+      "credentials": {
+        "telegramApi": {
+          "id": "l2OPAjs2xTqi5kSz",
+          "name": "B2bit n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentURL": "={{ $('Doc file creation1').item.json.id }}",
+        "actionsUi": {
+          "actionFields": [
+            {
+              "action": "insert",
+              "text": "=B2bit\n\n{{ $('treats telegram input1').item.json.message.caption }}\n\n"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        1500,
+        360
+      ],
+      "id": "f9ebe259-1d1c-49ae-ba7a-daf407266018",
+      "name": "Google Docs",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "APUL23rYbyLmgCZh",
+          "name": "Google Docs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.documentId }}",
+          "mode": "id"
+        },
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "application/pdf",
+              "drawingsToFormat": "application/pdf",
+              "slidesToFormat": "application/pdf",
+              "sheetsToFormat": "application/pdf"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2240,
+        360
+      ],
+      "id": "b9b3486b-a678-4e34-a994-2ead4ece595a",
+      "name": "Doc to PDF1",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "m2uPN0KrE8YHRbJX",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.result.chat.id }}",
+        "text": "=Menu Ações:\n\n/start -> Exibe o menu de opções e instruções.\n\n/help -> Exibe as Instruções para utilização dos comandos.\n\n/1 -> Cria um documento PDF com o cabeçalho “B2bit” e um texto previamente digitado pelo usuário.\n \n/2 -> Cria um documento PDF com cabeçalho “B2bit”, texto e imagem previamente enviados pelo usuário.\n\n/3 -> Transcreve um áudio enviado pelo usuário e retorna seu texto.\n\n/4 -> Exibe as notícias da capa do G1.\n\n/5 -> Responde automaticamente a partir de IA.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "4db93f72-cf11-43a0-a9b0-c0405d3aee12",
+      "name": "Send menu4",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2900,
+        360
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "l2OPAjs2xTqi5kSz",
+          "name": "B2bit n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('first message').item.json.message.chat.id }}",
+        "text": "=Link do seu PDF:\n\n{{ $('PDF to Google Drive1').item.json.webViewLink }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2720,
+        360
+      ],
+      "id": "3c966ef2-777c-4cd5-a989-86780ab4213a",
+      "name": "Send PDF file public link1",
+      "alwaysOutputData": false,
+      "credentials": {
+        "telegramApi": {
+          "id": "l2OPAjs2xTqi5kSz",
+          "name": "B2bit n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "Your_File_bot",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "root",
+          "mode": "list",
+          "cachedResultName": "/ (Root folder)",
+          "cachedResultUrl": "https://drive.google.com/drive"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2400,
+        360
+      ],
+      "id": "ffef9d07-68b2-4295-920c-79f1775b200c",
+      "name": "PDF to Google Drive1",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "m2uPN0KrE8YHRbJX",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "share",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "permissionsUi": {
+          "permissionsValues": {
+            "role": "reader",
+            "type": "anyone",
+            "allowFileDiscovery": true
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2560,
+        360
+      ],
+      "id": "737f6f26-42a9-483c-9cc6-1cc9bea121ec",
+      "name": "PDF public1",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "m2uPN0KrE8YHRbJX",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all(); \n\n// Array \"content\"\nconst data = items[0].json;\nconst contentArray = data.body.content;\n\n// Último objeto do array \"content\"\nconst lastObject = contentArray[contentArray.length - 1];\n\n// Retorna o valor de \"endIndex\" como saída\nreturn [{ json: { endIndex: lastObject.endIndex - 1 } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1860,
+        360
+      ],
+      "id": "c0c01cc6-f482-4baa-bbc5-76a02ffef159",
+      "name": "return the last index from doc file"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        780,
+        360
+      ],
+      "id": "c75b6c4a-9d20-4a29-9380-55fcf2d2ca13",
+      "name": "Download Image",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "m2uPN0KrE8YHRbJX",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "Imagem bot",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "root",
+          "cachedResultName": "/ (Root folder)"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1120,
+        360
+      ],
+      "id": "04b67bf4-e6d5-4eed-8316-0f1144f4d727",
+      "name": "Upload image in the drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "m2uPN0KrE8YHRbJX",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "share",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "permissionsUi": {
+          "permissionsValues": {
+            "role": "reader",
+            "type": "anyone",
+            "allowFileDiscovery": true
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1320,
+        360
+      ],
+      "id": "e5edacfb-6cbd-49a0-b8f8-37ce343e23f1",
+      "name": "Turn image public",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "m2uPN0KrE8YHRbJX",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://docs.googleapis.com/v1/documents/{{ $json.documentId }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDocsOAuth2Api",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1660,
+        360
+      ],
+      "id": "ca4bf946-d7f4-4b3c-b4da-fef78e55e353",
+      "name": "Get data from Doc file",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "APUL23rYbyLmgCZh",
+          "name": "Google Docs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst updatedItems = items.map((item) => {\n  item.json.message.caption = item.json.message.caption.substring(3);\n  return item;\n});\nreturn updatedItems;\n"
+      },
+      "id": "38ffab45-f0b9-425e-bf13-05ae5e230acd",
+      "name": "treats telegram input1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        240,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "folderId": "default",
+        "title": "B2bit"
+      },
+      "id": "14612f63-7725-45ea-b818-2a9cacc77e68",
+      "name": "Doc file creation1",
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        620,
+        360
+      ],
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "APUL23rYbyLmgCZh",
+          "name": "Google Docs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://docs.googleapis.com/v1/documents/{{ $('Google Docs').item.json.documentId }}:batchUpdate\n",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDocsOAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"requests\": [\n    {\n      \"insertInlineImage\": {\n        \"location\": {\n          \"index\": {{ $json.endIndex }}\n        },\n        \"uri\": \"{{ $('Upload image in the drive').item.json.webContentLink }}\",\n        \"objectSize\": {\n          \"height\": {\n            \"magnitude\": {{ $('first message').item.json.message.photo[2].height }},\n            \"unit\": \"PT\"\n          },\n          \"width\": {\n            \"magnitude\": {{ $('first message').item.json.message.photo[2].width }},\n            \"unit\": \"PT\"\n          }\n        }\n      }\n    }\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2060,
+        360
+      ],
+      "id": "02ec39be-e275-4ecf-bf3b-06d173fb51c4",
+      "name": "Inject image on Doc file",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "APUL23rYbyLmgCZh",
+          "name": "Google Docs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('first message').item.json.message.chat.id }}",
+        "text": "=Seu documento será enviado em instantes.",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        440,
+        360
+      ],
+      "id": "d3cd8e56-3645-45fa-b8fa-0356a313e1bf",
+      "name": "previous message",
+      "alwaysOutputData": false,
+      "credentials": {
+        "telegramApi": {
+          "id": "l2OPAjs2xTqi5kSz",
+          "name": "B2bit n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.result.chat.id }}",
+        "text": "=Menu Ações:\n\n/start -> Exibe o menu de opções e instruções.\n\n/help -> Exibe as Instruções para utilização dos comandos.\n\n/1 -> Cria um documento PDF com o cabeçalho “B2bit” e um texto previamente digitado pelo usuário.\n \n/2 -> Cria um documento PDF com cabeçalho “B2bit”, texto e imagem previamente enviados pelo usuário.\n\n/3 -> Transcreve um áudio enviado pelo usuário e retorna seu texto.\n\n/4 -> Exibe as notícias da capa do G1.\n\n/5 -> Responde automaticamente a partir de IA.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "37cb7e88-8995-4224-a31b-c57ada10597a",
+      "name": "Send menu2",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1380,
+        0
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "l2OPAjs2xTqi5kSz",
+          "name": "B2bit n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('first message').item.json.message.chat.id }}",
+        "text": "=Link do seu PDF:\n\n{{ $('PDF to Google Drive').item.json.webViewLink }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1220,
+        0
+      ],
+      "id": "160237d0-d196-41ce-8b92-43ad873d3dc4",
+      "name": "Send PDF file public link",
+      "alwaysOutputData": false,
+      "credentials": {
+        "telegramApi": {
+          "id": "l2OPAjs2xTqi5kSz",
+          "name": "B2bit n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## 1 - Cria Documento com texto prévio",
+        "height": 80,
+        "width": 260
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        140,
+        -100
+      ],
+      "id": "7ab8d12b-43db-4c2c-bf7d-e26b320c8b46",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentURL": "={{ $json.id }}",
+        "simple": false,
+        "actionsUi": {
+          "actionFields": [
+            {
+              "action": "insert",
+              "text": "=B2bit\n\n{{ $('treats telegram input').item.json.message.text }}"
+            }
+          ]
+        }
+      },
+      "id": "5637a656-feea-4e46-b696-3f71a6cf4d1f",
+      "name": "Update GDoc",
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        580,
+        0
+      ],
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "APUL23rYbyLmgCZh",
+          "name": "Google Docs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('Doc file creation').item.json.id }}",
+          "mode": "id"
+        },
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "application/pdf",
+              "drawingsToFormat": "application/pdf",
+              "slidesToFormat": "application/pdf",
+              "sheetsToFormat": "application/pdf"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        740,
+        0
+      ],
+      "id": "565281a9-ad6d-4fb5-8296-a8ab517bff38",
+      "name": "Doc to PDF",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "m2uPN0KrE8YHRbJX",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "Your_File_bot",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "root",
+          "mode": "list",
+          "cachedResultName": "/ (Root folder)",
+          "cachedResultUrl": "https://drive.google.com/drive"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        900,
+        0
+      ],
+      "id": "1bde0e52-d663-4999-b98f-5404ba36a05c",
+      "name": "PDF to Google Drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "m2uPN0KrE8YHRbJX",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "share",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "permissionsUi": {
+          "permissionsValues": {
+            "role": "reader",
+            "type": "anyone",
+            "allowFileDiscovery": true
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1060,
+        0
+      ],
+      "id": "e1f0d55d-7bc6-401b-bc1f-d4b365ea71be",
+      "name": "PDF public",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "m2uPN0KrE8YHRbJX",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst updatedItems = items.map((item) => {\n  item.json.message.text = item.json.message.text.substring(3);\n  return item;\n});\nreturn updatedItems;\n"
+      },
+      "id": "19ad9b8e-552a-4f59-a770-307612ad97bf",
+      "name": "treats telegram input",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        80,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "folderId": "default",
+        "title": "B2bit"
+      },
+      "id": "f4df79bd-dd47-45a3-90f4-2f31db521f92",
+      "name": "Doc file creation",
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        420,
+        0
+      ],
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "APUL23rYbyLmgCZh",
+          "name": "Google Docs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('first message').item.json.message.chat.id }}",
+        "text": "=Seu documento será enviado em instantes.",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        240,
+        0
+      ],
+      "id": "b575d6f8-1103-4332-be49-c168f5c6e7bc",
+      "name": "previous message1",
+      "alwaysOutputData": false,
+      "credentials": {
+        "telegramApi": {
+          "id": "l2OPAjs2xTqi5kSz",
+          "name": "B2bit n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message.chat.id }}",
+        "text": "=Opção inválida! Por favor digite uma opção disponível!",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "026d4519-d1d6-43a2-8fe4-03579c51a9a0",
+      "name": "option Warning",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        20,
+        2220
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "l2OPAjs2xTqi5kSz",
+          "name": "B2bit n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.result.chat.id }}",
+        "text": "=Menu Ações:\n\n/start -> Exibe o menu de opções e instruções.\n\n/help -> Exibe as Instruções para utilização dos comandos.\n\n/1 -> Cria um documento PDF com o cabeçalho “B2bit” e um texto previamente digitado pelo usuário.\n \n/2 -> Cria um documento PDF com cabeçalho “B2bit”, texto e imagem previamente enviados pelo usuário.\n\n/3 -> Transcreve um áudio enviado pelo usuário e retorna seu texto.\n\n/4 -> Exibe as notícias da capa do G1.\n\n/5 -> Responde automaticamente a partir de IA.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "91aa7360-0afb-4425-95ec-929fc4f00dbf",
+      "name": "Send menu1",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        180,
+        2220
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "l2OPAjs2xTqi5kSz",
+          "name": "B2bit n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Opção inválida Warning",
+        "height": 80,
+        "width": 320
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        20,
+        2100
+      ],
+      "id": "f5d49e12-b9cd-41c4-891a-ead3bc2958ff",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "## /start e /help",
+        "height": 80,
+        "width": 150
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        -440
+      ],
+      "id": "49ed6146-55e9-4d73-9671-c94dbc25016c",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message.text }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        280,
+        1900
+      ],
+      "id": "79d07ff9-4aa6-4d8a-8c49-9475356fe503",
+      "name": "send message from Telegram to Gemini"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.telegram.org/bot7773719477:AAFmN0OWCINMg7pVfm_ixif1BAaBIEKehfo/getFile?file_id={{ $json.message.voice.file_id }}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        80,
+        1100
+      ],
+      "id": "d45c0837-b08a-496d-bc67-160891dda4a5",
+      "name": "Extract Path from audio"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.telegram.org/file/bot7773719477:AAFmN0OWCINMg7pVfm_ixif1BAaBIEKehfo/{{ $json.result.file_path }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        280,
+        1100
+      ],
+      "id": "1d06a86c-0ceb-4dea-8d42-88cde69ceb4a",
+      "name": "Download Binary file"
+    },
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
+        "destinationKey": "base64",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        480,
+        1100
+      ],
+      "id": "41618d57-9760-4ac5-b5f1-d38a64deca1e",
+      "name": "Binary file to Base64"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "base64",
+        "options": {
+          "fileName": "audio.mp3",
+          "mimeType": "audio/mpeg"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        680,
+        1100
+      ],
+      "id": "6c964d86-fd9c-43bd-b151-7e87ec52d491",
+      "name": "Base64 to .mp3"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.gladia.io/v2/upload",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-gladia-key",
+              "value": "f4af7e07-f73d-4812-af76-683d5ab63309"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "=audio",
+              "inputDataFieldName": "=data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        880,
+        1100
+      ],
+      "id": "399f950d-d191-4255-bf81-8f7465445bd8",
+      "name": "Send file to Gladia"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.gladia.io/v2/pre-recorded",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-gladia-key",
+              "value": "f4af7e07-f73d-4812-af76-683d5ab63309"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"audio_url\": \"{{ $json.audio_url }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1100,
+        1100
+      ],
+      "id": "80f54a7f-3e1f-4c91-ac9b-e16a74cc3e7f",
+      "name": "Post link provide from file upload"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('first message').item.json.message.from.id }}",
+        "text": "=Seu áudio está sendo transcrito e ficará pronto em instantes.",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1320,
+        1100
+      ],
+      "id": "339c4ba6-f25a-46e8-9f0f-9f15c9277cba",
+      "name": "confirmation message",
+      "credentials": {
+        "telegramApi": {
+          "id": "l2OPAjs2xTqi5kSz",
+          "name": "B2bit n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1520,
+        1100
+      ],
+      "id": "27f3a8b8-362b-4556-8b99-db9338ec5f34",
+      "name": "Wait 10s for the audio transcription",
+      "webhookId": "4eaf8441-b3c8-4322-9e27-e4c01d3c1da2"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.gladia.io/v2/pre-recorded/{{ $('Post link provide from file upload').item.json.id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-gladia-key",
+              "value": "f4af7e07-f73d-4812-af76-683d5ab63309"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1720,
+        1100
+      ],
+      "id": "9df12174-f131-4b2b-a993-57a9f2bd1f51",
+      "name": "Get data from Gladia"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "182c4345-afa1-4ca1-b589-a0e7c22d9b8e",
+              "leftValue": "={{ $json.result.transcription.full_transcript }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1940,
+        1100
+      ],
+      "id": "6d48a50e-a3d5-4ffd-9e76-9ee2df7b3d38",
+      "name": "verify if the transcription text is empty"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.result.chat.id }}",
+        "text": "=Menu Ações:\n\n/start -> Exibe o menu de opções e instruções.\n\n/help -> Exibe as Instruções para utilização dos comandos.\n\n/1 -> Cria um documento PDF com o cabeçalho “B2bit” e um texto previamente digitado pelo usuário.\n \n/2 -> Cria um documento PDF com cabeçalho “B2bit”, texto e imagem previamente enviados pelo usuário.\n\n/3 -> Transcreve um áudio enviado pelo usuário e retorna seu texto.\n\n/4 -> Exibe as notícias da capa do G1.\n\n/5 -> Responde automaticamente a partir de IA.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "448f71f6-dfd9-491f-aadc-2cd26dec322a",
+      "name": "Send menu6",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2820,
+        1220
+      ],
+      "executeOnce": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "l2OPAjs2xTqi5kSz",
+          "name": "B2bit n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('first message').item.json.message.from.id }}",
+        "text": "={{ $('treats Gladia output').item.json.result.transcription.full_transcript }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2620,
+        1220
+      ],
+      "id": "ddbda2ca-f36b-4512-a30d-d1383f5909d7",
+      "name": "send Gladia output",
+      "credentials": {
+        "telegramApi": {
+          "id": "l2OPAjs2xTqi5kSz",
+          "name": "B2bit n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst updatedItems = items.map((item) => {\n  item.json.result.transcription.full_transcript =\n    item.json.result.transcription.full_transcript.replace(/\\*/g, \"\");\n  return item;\n});\nreturn updatedItems;\n"
+      },
+      "id": "695b2ea0-8351-4927-8727-cfed9578be78",
+      "name": "treats Gladia output",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2180,
+        1220
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('first message').item.json.message.from.id }}",
+        "text": "=Sinto muito, não foi possível transcrever o áudio, caso tenha dito algo por favor tente novamente.",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2180,
+        960
+      ],
+      "id": "fbe006b1-f471-4679-8821-9ce2a44b17c8",
+      "name": "send transcription error",
+      "credentials": {
+        "telegramApi": {
+          "id": "l2OPAjs2xTqi5kSz",
+          "name": "B2bit n8n bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('first message').item.json.message.from.id }}",
+        "text": "Seu áudio transcrito:",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2400,
+        1220
+      ],
+      "id": "12aff5b8-cce6-4f48-a9e4-afe9955acc25",
+      "name": "complementary message",
+      "credentials": {
+        "telegramApi": {
+          "id": "l2OPAjs2xTqi5kSz",
+          "name": "B2bit n8n bot"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "first message": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Send menu",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "menu instructions",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "treats telegram input",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "if marcadores preenchidos",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "if marcadores preenchidos",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "audio instruction",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extract Path from audio",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "previous message2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "treats telegram input2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "option Warning",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "send message from Telegram to Gemini",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "treats telegram input2": {
+      "main": [
+        [
+          {
+            "node": "send message from Telegram to Gemini",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "treats Gemini output": {
+      "main": [
+        [
+          {
+            "node": "send Gemini output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "send Gemini output": {
+      "main": [
+        [
+          {
+            "node": "Send menu5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get data from G1": {
+      "main": [
+        [
+          {
+            "node": "extract HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "previous message2": {
+      "main": [
+        [
+          {
+            "node": "Get data from G1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "extract HTML": {
+      "main": [
+        [
+          {
+            "node": "Trates the HTML data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trates the HTML data": {
+      "main": [
+        [
+          {
+            "node": "send news and links",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "send news and links": {
+      "main": [
+        [
+          {
+            "node": "Send menu3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "if marcadores preenchidos": {
+      "main": [
+        [
+          {
+            "node": "treats telegram input1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "not image warning",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram": {
+      "main": [
+        [
+          {
+            "node": "Upload image in the drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Docs": {
+      "main": [
+        [
+          {
+            "node": "Get data from Doc file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Doc to PDF1": {
+      "main": [
+        [
+          {
+            "node": "PDF to Google Drive1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send PDF file public link1": {
+      "main": [
+        [
+          {
+            "node": "Send menu4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PDF to Google Drive1": {
+      "main": [
+        [
+          {
+            "node": "PDF public1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PDF public1": {
+      "main": [
+        [
+          {
+            "node": "Send PDF file public link1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "return the last index from doc file": {
+      "main": [
+        [
+          {
+            "node": "Inject image on Doc file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Image": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload image in the drive": {
+      "main": [
+        [
+          {
+            "node": "Turn image public",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Turn image public": {
+      "main": [
+        [
+          {
+            "node": "Google Docs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get data from Doc file": {
+      "main": [
+        [
+          {
+            "node": "return the last index from doc file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "treats telegram input1": {
+      "main": [
+        [
+          {
+            "node": "previous message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Doc file creation1": {
+      "main": [
+        [
+          {
+            "node": "Download Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Inject image on Doc file": {
+      "main": [
+        [
+          {
+            "node": "Doc to PDF1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "previous message": {
+      "main": [
+        [
+          {
+            "node": "Doc file creation1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send PDF file public link": {
+      "main": [
+        [
+          {
+            "node": "Send menu2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update GDoc": {
+      "main": [
+        [
+          {
+            "node": "Doc to PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Doc to PDF": {
+      "main": [
+        [
+          {
+            "node": "PDF to Google Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PDF to Google Drive": {
+      "main": [
+        [
+          {
+            "node": "PDF public",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PDF public": {
+      "main": [
+        [
+          {
+            "node": "Send PDF file public link",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "treats telegram input": {
+      "main": [
+        [
+          {
+            "node": "previous message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Doc file creation": {
+      "main": [
+        [
+          {
+            "node": "Update GDoc",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "previous message1": {
+      "main": [
+        [
+          {
+            "node": "Doc file creation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "option Warning": {
+      "main": [
+        [
+          {
+            "node": "Send menu1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "send message from Telegram to Gemini": {
+      "main": [
+        [
+          {
+            "node": "treats Gemini output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Path from audio": {
+      "main": [
+        [
+          {
+            "node": "Download Binary file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Binary file": {
+      "main": [
+        [
+          {
+            "node": "Binary file to Base64",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Binary file to Base64": {
+      "main": [
+        [
+          {
+            "node": "Base64 to .mp3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Base64 to .mp3": {
+      "main": [
+        [
+          {
+            "node": "Send file to Gladia",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send file to Gladia": {
+      "main": [
+        [
+          {
+            "node": "Post link provide from file upload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post link provide from file upload": {
+      "main": [
+        [
+          {
+            "node": "confirmation message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "confirmation message": {
+      "main": [
+        [
+          {
+            "node": "Wait 10s for the audio transcription",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 10s for the audio transcription": {
+      "main": [
+        [
+          {
+            "node": "Get data from Gladia",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get data from Gladia": {
+      "main": [
+        [
+          {
+            "node": "verify if the transcription text is empty",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "verify if the transcription text is empty": {
+      "main": [
+        [
+          {
+            "node": "send transcription error",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "treats Gladia output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "send Gladia output": {
+      "main": [
+        [
+          {
+            "node": "Send menu6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "treats Gladia output": {
+      "main": [
+        [
+          {
+            "node": "complementary message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "complementary message": {
+      "main": [
+        [
+          {
+            "node": "send Gladia output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "20f7e158-b308-4ba5-ad84-17cfc95f4d71",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "3bcf05dedcebbe478257abe0606b7582eb4fcb7d2031e7f239a62da69e825264"
+  },
+  "id": "lan8mbRErCT25W5L",
+  "tags": []
+}
